@@ -13,7 +13,7 @@ services:
     volumes:
       - .:/app/data
   mysql:
-    container_name: event-msql-repo
+    container_name: event-mysql-repo
     build:
       context: .
       dockerfile: Dockerfile.mysql
@@ -41,7 +41,7 @@ services:
     ports:
       - "9090:80"
     environment:
-      PMA_HOST: event-msql-repo
+      PMA_HOST: event-mysql-repo
       MYSQL_ROOT_PASSWORD: secret
 
 networks:

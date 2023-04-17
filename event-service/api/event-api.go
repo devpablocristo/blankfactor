@@ -46,7 +46,7 @@ func StartApi(wg *sync.WaitGroup, port string) {
 	// 	panic(err)
 	// }
 
-	// _, err = db.Exec("GRANT ALL PRIVILEGES ON events_service.* TO 'tester'@'event-msql-repo'")
+	// _, err = db.Exec("GRANT ALL PRIVILEGES ON events_service.* TO 'tester'@'event-mysql-repo'")
 	// if err != nil {
 	// 	panic(err)
 	// }

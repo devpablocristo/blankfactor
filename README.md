@@ -1,13 +1,9 @@
 # Event Service
 
-Run run the project: 
-
-$ sudo docker-compose up --build
+Run run the project: $ sudo make up
 
 
-Stop the project: 
-
-$ sudo docker-compose down
+Stop the project:  $ sudo make down
 
 
 ## Endpoints
