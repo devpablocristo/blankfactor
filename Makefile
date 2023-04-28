@@ -48,7 +48,7 @@ up: ## Start the containers
 	@echo "Starting the containers"
 	@docker-compose up
 
-build: ## Start the containers
+bu: ## Start the containers
 	@echo "Buildor rebuild the containers"
 	@docker-compose up --build
 
