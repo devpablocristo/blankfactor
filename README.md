@@ -10,7 +10,7 @@ sudo make up
 - Build or rebuild the project:
 
 ```bash
-sudo make build
+sudo make bu
 ```
 
 - Stop the project:
