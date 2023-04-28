@@ -1,3 +1,6 @@
+# Start
+
+Create .env file from .env.example
 # Event Service
 
 Run run the project: $ sudo make up
@@ -20,8 +23,3 @@ curl --header "Content-Type: application/json" \
 ### Get Overlaping events
 
 curl --request GET localhost:8080/api/v1/events/get-overlaping
-
-
-
-
-orm
