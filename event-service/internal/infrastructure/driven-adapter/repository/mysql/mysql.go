@@ -29,7 +29,7 @@ func NewEventRepository(db *sql.DB) port.EventRepo {
 }
 
 func (r *EventRepository) CreateEvent(ctx context.Context, event *domain.Event) error {
-	query := "INSERT INTO `events` (start_time, end_time) VALUES (?, ?)"
+	query := "INSERT INTO events (start_time, end_time) VALUES (?, ?)"
 
 	result, err := r.db.ExecContext(ctx, query, event.StartTime, event.EndTime)
 	if err != nil {
@@ -47,7 +47,7 @@ func (r *EventRepository) CreateEvent(ctx context.Context, event *domain.Event) 
 }
 
 func (r *EventRepository) GetEventByID(ctx context.Context, id int) (*domain.Event, error) {
-	query := "SELECT id, start_time, end_time FROM events_service WHERE id = ?"
+	query := "SELECT id, start_time, end_time FROM events WHERE id = ?"
 
 	row := r.db.QueryRowContext(ctx, query, id)
 
@@ -60,7 +60,7 @@ func (r *EventRepository) GetEventByID(ctx context.Context, id int) (*domain.Eve
 }
 
 func (r *EventRepository) UpdateEvent(ctx context.Context, event *domain.Event) error {
-	query := "UPDATE events_service SET start_time = ?, end_time = ? WHERE id = ?"
+	query := "UPDATE events SET start_time = ?, end_time = ? WHERE id = ?"
 
 	_, err := r.db.ExecContext(ctx, query, event.StartTime, event.EndTime, event.ID)
 	if err != nil {
@@ -71,7 +71,7 @@ func (r *EventRepository) UpdateEvent(ctx context.Context, event *domain.Event) 
 }
 
 func (r *EventRepository) DeleteEvent(ctx context.Context, id int) error {
-	query := "DELETE FROM events_service WHERE id = ?"
+	query := "DELETE FROM events WHERE id = ?"
 
 	_, err := r.db.ExecContext(ctx, query, id)
 	if err != nil {
@@ -82,7 +82,7 @@ func (r *EventRepository) DeleteEvent(ctx context.Context, id int) error {
 }
 
 func (r *EventRepository) GetAllEvents(ctx context.Context) ([]*domain.Event, error) {
-	query := "SELECT id, start_time, end_time FROM `events`"
+	query := "SELECT id, start_time, end_time FROM events"
 
 	rows, err := r.db.QueryContext(ctx, query)
 	if err != nil {

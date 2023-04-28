@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	port "github.com/devpablocristo/blankfactor/event-service/internal/application/port"
-	"github.com/devpablocristo/blankfactor/event-service/internal/domain"
+	domain "github.com/devpablocristo/blankfactor/event-service/internal/domain"
 )
 
 type Handler struct {
@@ -19,7 +19,8 @@ func NewHandler(es port.EventService) *Handler {
 }
 
 func (h *Handler) GetOverlappingEvents(w http.ResponseWriter, r *http.Request) {
-	events, err := h.eventServ.GetOverlappingEvents(r.Context())
+	ctx := r.Context()
+	events, err := h.eventServ.GetOverlappingEvents(ctx)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -32,13 +33,11 @@ func (h *Handler) GetOverlappingEvents(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-
 	w.Write(jsonData)
 }
 
 func (h *Handler) GetAllEvents(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-
 	events, err := h.eventServ.GetAllEvents(ctx)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -51,7 +50,6 @@ func (h *Handler) GetAllEvents(w http.ResponseWriter, r *http.Request) {
 
 func (h *Handler) CreateEvent(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
-
 	var data domain.Event
 	err := json.NewDecoder(r.Body).Decode(&data)
 	if err != nil {

@@ -24,7 +24,7 @@ services:
       - "3306:3306"
     image: mysql:8.0.23
     environment:
-      MYSQL_DATABASE: events
+      MYSQL_DATABASE: events_service
       MYSQL_USER: tester
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: secret
@@ -35,7 +35,7 @@ services:
 
   # se agrega el servicio de phpMyAdmin
   phpmyadmin:
-    container_name: phpmyadmin
+    container_name: event-phpmyadmin
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:

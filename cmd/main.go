@@ -4,22 +4,24 @@ import (
 	"os"
 	"sync"
 
+	cmsenv "github.com/devpablocristo/blankfactor/common/env"
 	eventService "github.com/devpablocristo/blankfactor/event-service/api"
 )
 
 const (
 	defaultPort = "8080"
-	port1       = "8081"
-	port2       = "8082"
 )
 
 func main() {
 	wg := sync.WaitGroup{}
 	defer wg.Wait()
 
-	reserveNumberPort := os.Getenv("number-manager_PORT")
+	cmsenv.LoadEnv()
+
+	reserveNumberPort := os.Getenv("SERVER_PORT_1")
 	if reserveNumberPort == "" {
-		reserveNumberPort = defaultPort
+		reserveNumberPort = os.Getenv(defaultPort)
+
 	}
 
 	wg.Add(1)
