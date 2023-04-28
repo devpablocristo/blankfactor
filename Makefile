@@ -49,7 +49,7 @@ up: ## Start the containers
 	@docker-compose up
 
 build: ## Start the containers
-	@echo "Starting the containers"
+	@echo "Buildor rebuild the containers"
 	@docker-compose up --build
 
 down: ## Stop the containers
