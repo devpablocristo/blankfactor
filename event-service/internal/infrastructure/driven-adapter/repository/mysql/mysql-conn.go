@@ -7,12 +7,14 @@ import (
 	"os"
 )
 
-func RepositoryConn() (*sql.DB, error) {
-	db, err := sql.Open("mysql", openConn())
+func MysqlConn() (*sql.DB, error) {
+	dsn := openConn()
+	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatalln(err)
 		return nil, err
 	}
+	log.Println("MySQL connection established")
 	return db, nil
 }
 

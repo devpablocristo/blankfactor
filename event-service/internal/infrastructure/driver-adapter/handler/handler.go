@@ -57,7 +57,8 @@ func (h *Handler) CreateEvent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.eventServ.CreateEvent(ctx, &data)
+	//event, err := h.eventServ.CreateEvent(ctx, &data) <-- imprlementar
+	_, err = h.eventServ.CreateEvent(ctx, &data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

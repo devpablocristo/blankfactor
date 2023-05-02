@@ -17,13 +17,13 @@ func NewEventService(er port.EventRepo) port.EventService {
 	}
 }
 
-func (es *EventService) CreateEvent(ctx context.Context, event *domain.Event) error {
-	err := es.EventRepo.CreateEvent(ctx, event)
+func (es *EventService) CreateEvent(ctx context.Context, event *domain.Event) (*domain.Event, error) {
+	event, err := es.EventRepo.CreateEvent(ctx, event)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	return event, nil
 }
 
 func (es *EventService) GetAllEvents(ctx context.Context) ([]*domain.Event, error) {
