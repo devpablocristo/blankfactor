@@ -57,13 +57,12 @@ func (h *Handler) CreateEvent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//event, err := h.eventServ.CreateEvent(ctx, &data) <-- imprlementar
-	_, err = h.eventServ.CreateEvent(ctx, &data)
+	createdEvent, err := h.eventServ.CreateEvent(ctx, &data)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(data)
+	json.NewEncoder(w).Encode(createdEvent)
 }
